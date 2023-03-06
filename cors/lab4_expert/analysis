@@ -1,0 +1,19 @@
+
+goal:
+    locate an endpoint on the local network (192.168.0.0/24, port 8080)
+    delete user Carlos in admin panel
+
+analysis:
+    bypass organization's intranet, and located within private IP address space
+    dont show anything in website, try to use Burpcollaborator
+Step:
+    1.Scan the local newwork 192.168.0.x/24
+    => after detect we have a code and find csrf token=> we have use regex to get csrf token
+    http://192.168.0.x : x = 86, port 8080
+    2. try to find an XSS vulnerability in login page
+        => complete => username field vulnerable to XSS
+    3. use the xss vulnerability in order to access to authenticated page.
+        => success => receive post form to delete user
+    4. delete carlos from admin panel
+        => solve lab
+        

