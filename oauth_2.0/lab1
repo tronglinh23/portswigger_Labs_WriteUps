@@ -1,0 +1,6 @@
+analysis:
+ take [POST] method and find out they no need to passwd to check
+ we can change username 
+ and login other people
+
+ 

@@ -1,0 +1,5 @@
+notice that in getoauth link to social media
+they no need to state: which mean they do not need to know previous session or csrf token to detect who send this request
+
+we can try our social media code => and deliver to admin 
+so they attach their social media with our own social media account.

